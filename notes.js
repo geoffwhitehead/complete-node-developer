@@ -27,7 +27,6 @@ let addNote= (title, body) => {
     saveNotes(notes);
     return note
   }
-
 }
 
 let getAll = () => {
