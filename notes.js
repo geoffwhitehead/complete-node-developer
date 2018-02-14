@@ -54,6 +54,8 @@ let removeNote = (title) => {
 }
 
 let logNote = (note) => {
+
+  debugger
   console.log('note found');
   console.log('Note created');
   console.log('--');
