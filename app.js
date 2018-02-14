@@ -1,16 +1,22 @@
 console.log('Starting app.js');
 
 const fs = require('fs')
-const os = require('os')
+const _ = require('lodash');
+const yargs = require('yargs');
+
 const notes =  require('./notes.js')
 
-let res = notes.addNote();
+const argv = yargs.argv;
+let command = argv._[0];
 
-console.log(res);
-// var user =os.userInfo();
-// console.log(user);
-// fs.appendFile('greetings.txt', 'hello world' + user.username + notes.age, function(err) {
-//   if (err) {
-//     console.log('unable to write');
-//   }
-// })
+if(command === 'add'){
+  notes.addNote(argv.title, argv.body)
+} else if ( command === 'list'){
+  notes.getAll();
+} else if(command === 'remove'){
+  notes.removeNote(argv.title)
+} else if(command === 'read') {
+  notes.getNote(argv.title)
+} else {
+  console.log('note recognised');
+}
