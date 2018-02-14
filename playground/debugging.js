@@ -2,7 +2,7 @@ let person = {
   name: 'asd'
 }
 
-person.age = 123
+person.age = 23
 
 
 person.name = 'mike'
