@@ -1,7 +1,7 @@
 const request  = require('request');
 
 
-let geocodeAddress = (address) => {
+let geocodeAddress = (address, cb) => {
   let encodedAddress = encodeURIComponent(address);
 
   //key AIzaSyDRqstjwYqwzo7-iJD2T_FtU3d_Pk3-3Wo
@@ -13,11 +13,15 @@ let geocodeAddress = (address) => {
     json: true,
   }, (error, response, body) => {
     if(error){
-      console.log('error');
+      cb('unabke to connect')
     } else if(body.status === 'ZERO_RESULTS'){
-      console.log('iunable to find');
+      cb('iunable to find');
     } else if(body.status === 'OK'){
-      console.log(body.results[0]);
+      cb(undefined, {
+        address: body.results[0].formatted_address,
+        lat: body.results[0].geometry.location.lat,
+        lng: body.results[0].geometry.location.lng
+      })
     }
   })
 }
